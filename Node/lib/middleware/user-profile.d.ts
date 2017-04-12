@@ -4,6 +4,4 @@ export interface IFacebookUserProfileOptions {
     fields?: Array<string>;
     expireMinutes?: number;
 }
-export declare class Facebook {
-    static userProfile(options: IFacebookUserProfileOptions): IMiddlewareMap;
-}
+export declare const RetrieveUserProfile: (options: IFacebookUserProfileOptions) => IMiddlewareMap;

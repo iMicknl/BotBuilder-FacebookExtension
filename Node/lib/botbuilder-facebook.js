@@ -1,4 +1,4 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var facebook_1 = require("./middleware/facebook");
-exports.Facebook.userProfile = facebook_1.Facebook.userProfile;
+var user_profile_1 = require("./middleware/user-profile");
+exports.Facebook.userProfile = user_profile_1.RetrieveUserProfile;

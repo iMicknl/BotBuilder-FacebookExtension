@@ -1,5 +1,5 @@
-import { Facebook } from './middleware/facebook'
+import { RetrieveUserProfile } from './middleware/user-profile'
 
 declare var exports: any;
 
-exports.Facebook.userProfile = Facebook.userProfile;
+exports.Facebook.userProfile = RetrieveUserProfile;
