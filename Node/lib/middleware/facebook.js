@@ -13,9 +13,10 @@ var Facebook = (function () {
                     next();
                     return;
                 }
-                var expireMinutes = (options.expireMinutes ? options.expireMinutes : 60 * 24) * 1000 * 60;
+                var expireMinutes = (options.expireMinutes !== undefined ? options.expireMinutes : 60 * 24) * 1000 * 60;
                 var currentTime = new Date().getTime();
-                if (session.userData.facebook_last_updated !== undefined && (currentTime - expireMinutes) < session.userData.facebook_last_updated) {
+                var lastUpdated = session.userData.facebook_last_updated;
+                if (session.userData.facebook_last_updated !== undefined && (lastUpdated + expireMinutes) >= currentTime) {
                     next();
                     return;
                 }
@@ -34,14 +35,20 @@ var Facebook = (function () {
                             }
                             session.userData[field] = user[field];
                         }
-                        session.userData.facebook_last_updated = new Date().getTime();
+                        session.userData.facebook_last_updated = currentTime;
                     }
                     else {
                         for (var _a = 0, fields_2 = fields; _a < fields_2.length; _a++) {
                             var field = fields_2[_a];
                             session.userData[field] = '';
                         }
-                        console.error(error);
+                        body = JSON.parse(body);
+                        if (body.error) {
+                            console.error(body.error);
+                        }
+                        else {
+                            console.error(error);
+                        }
                     }
                 });
                 next();

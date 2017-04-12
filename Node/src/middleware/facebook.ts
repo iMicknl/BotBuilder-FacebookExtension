@@ -28,11 +28,12 @@ export class Facebook {
                     return;
                 }
 
-                const expireMinutes = (options.expireMinutes ? options.expireMinutes : 60 * 24) * 1000 * 60;
+                const expireMinutes = (options.expireMinutes !== undefined ? options.expireMinutes : 60 * 24) * 1000 * 60;
                 const currentTime = new Date().getTime();
+                const lastUpdated = session.userData.facebook_last_updated;
 
-                // Check if cached
-                if (session.userData.facebook_last_updated !== undefined && (currentTime - expireMinutes) < session.userData.facebook_last_updated) {
+                // Skip if cached
+                if (session.userData.facebook_last_updated !== undefined && (lastUpdated + expireMinutes) >= currentTime) {
                     next();
                     return;
                 }
