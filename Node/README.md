@@ -25,13 +25,13 @@ A required setting for the Middleware is the `accessToken` that you use in the B
 
 Example:
 ```typescript
-import { Facebook } from './middleware/facebook';
+import { FBUserProfile } from 'botbuilder-facebookextension';
 
-bot.use(Facebook.userProfile(
+bot.use(FBUserProfile(
     {   
         accessToken: 'PAGE_ACCESS_TOKEN',
         expireMinutes: 60, // OPTIONAL
-        fields: ['first_name' ,'last_name', 'gender'] // OPTIONAL
+        fields: ['first_name', 'last_name', 'gender'] // OPTIONAL
     }
 ));
 

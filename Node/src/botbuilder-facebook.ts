@@ -2,4 +2,4 @@ import { RetrieveUserProfile } from './middleware/user-profile'
 
 declare var exports: any;
 
-exports.Facebook.userProfile = RetrieveUserProfile;
+exports.FBUserProfile = RetrieveUserProfile;
