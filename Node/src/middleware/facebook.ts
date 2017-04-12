@@ -45,12 +45,12 @@ export class Facebook {
                     qs: { access_token: options.accessToken },
                     method: 'GET'
                 }, (error, response, body) => {
+
                     if (!error && response.statusCode === 200) {
                         const user = JSON.parse(body);
 
                         // Save profile to userData
                         for (let field of fields) {
-
                             // Check if field exists
                             if (user[field] === undefined) {
                                 continue;
@@ -60,14 +60,21 @@ export class Facebook {
                         }
 
                         // Add current time
-                        session.userData.facebook_last_updated = new Date().getTime();
+                        session.userData.facebook_last_updated = currentTime;
                     } else {
                         // Set default values
                         for (let field of fields) {
                             session.userData[field] = '';
                         }
 
-                        console.error(error);
+                        body = JSON.parse(body);
+
+                        if (body.error) {
+                            console.error(body.error);
+                        } else {
+                            console.error(error);
+                        }
+
                     }
                 });
 
