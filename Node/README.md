@@ -18,10 +18,10 @@
 ## Getting Started
 Install the package through NPM. `npm install botbuilder-facebookextension --save`. Choose which part of this package you would like to implement in your code.
 
-### User Profile API
-In order to populate the userdata with the Facebook userdata, you can use this Middleware. It will automatically retrieve the data from Facebook and store it before your first reply. By default it will refresh the userdata every day, but you can change that by passing the settings.
+### User Profile API 
+In order to populate the userdata with the Facebook userdata, you can use this Middleware. It will automatically retrieve the data from Facebook and store it before your first reply. By default it will refresh the userdata every day, but you can change that by passing a settingsobject.
 
-A required setting for the Middleware is the `accessToken` that you use in the Bot Framework settings. Optional setting are `fields` (array of fieldnames) and `expireMinutes` (number of minutes to cache data).
+A required setting for the Middleware is the `accessToken` that you use in the Bot Framework settings. Optional setting are `fields` (array of [fieldnames](https://developers.facebook.com/docs/messenger-platform/user-profile)) and `expireMinutes` (number of minutes to cache data).
 
 Example:
 ```typescript

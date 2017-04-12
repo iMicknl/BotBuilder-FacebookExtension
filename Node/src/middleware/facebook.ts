@@ -12,6 +12,9 @@ export interface IFacebookUserProfileOptions {
     expireMinutes?: number;
 }
 
+const graphApiUrl = 'https://graph.facebook.com/v2.6';
+const defaultFields = ['first_name', 'last_name', 'profile_pic', 'locale', 'timezone', 'gender', 'is_payment_enabled', 'last_ad_referral'];
+
 export class Facebook {
 
     static userProfile(options: IFacebookUserProfileOptions): IMiddlewareMap {
@@ -25,19 +28,14 @@ export class Facebook {
                     return;
                 }
 
-                // Default value for expireMinutes
                 const expireMinutes = (options.expireMinutes ? options.expireMinutes : 60 * 24);
 
                 if (session.userData.facebook_last_updated === undefined || session.userData.facebook_last_updated < (new Date().getTime() - 1000 * 60 * expireMinutes)) {
 
-                    // Default value for fields
-                    let fields = ['first_name', 'last_name', 'profile_pic', 'locale', 'timezone', 'gender', 'is_payment_enabled', 'last_ad_referral'];
-                    if (options.fields !== undefined && options.fields.length > 1) {
-                        fields = options.fields;
-                    }
-
+                    const fields = ((options.fields !== undefined && options.fields.length > 1) ? options.fields : defaultFields);
+           
                     request({
-                        url: `https://graph.facebook.com/v2.6/${session.message.address.user.id}?fields=${fields.join()}`,
+                        url: `${graphApiUrl}/${session.message.address.user.id}?fields=${fields.join()}`,
                         qs: { access_token: options.accessToken },
                         method: 'GET'
                     }, (error, response, body) => {

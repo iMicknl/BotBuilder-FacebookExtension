@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var request = require("request");
+var graphApiUrl = 'https://graph.facebook.com/v2.6';
+var defaultFields = ['first_name', 'last_name', 'profile_pic', 'locale', 'timezone', 'gender', 'is_payment_enabled', 'last_ad_referral'];
 var Facebook = (function () {
     function Facebook() {
     }
@@ -13,12 +15,9 @@ var Facebook = (function () {
                 }
                 var expireMinutes = (options.expireMinutes ? options.expireMinutes : 60 * 24);
                 if (session.userData.facebook_last_updated === undefined || session.userData.facebook_last_updated < (new Date().getTime() - 1000 * 60 * expireMinutes)) {
-                    var fields_1 = ['first_name', 'last_name', 'profile_pic', 'locale', 'timezone', 'gender', 'is_payment_enabled', 'last_ad_referral'];
-                    if (options.fields !== undefined && options.fields.length > 1) {
-                        fields_1 = options.fields;
-                    }
+                    var fields_1 = ((options.fields !== undefined && options.fields.length > 1) ? options.fields : defaultFields);
                     request({
-                        url: "https://graph.facebook.com/v2.6/" + session.message.address.user.id + "?fields=" + fields_1.join(),
+                        url: graphApiUrl + "/" + session.message.address.user.id + "?fields=" + fields_1.join(),
                         qs: { access_token: options.accessToken },
                         method: 'GET'
                     }, function (error, response, body) {
