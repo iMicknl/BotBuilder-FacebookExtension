@@ -8,3 +8,6 @@ The [User Profile API](https://developers.facebook.com/docs/messenger-platform/u
 
 ## Contribute
 Currently only the BotBuilder Node SDK is supported. Pull requests for C# support are welcome!
+
+## License
+MIT

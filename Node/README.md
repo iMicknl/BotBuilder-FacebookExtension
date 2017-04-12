@@ -13,7 +13,7 @@
 * Account Linking
 
 ## Requirements
-* Microsoft Bot Framework (NodeJS)
+* [Microsoft BotBuilder](https://github.com/Microsoft/BotBuilder) (NodeJS)
 
 ## Getting Started
 Install the package through NPM. `npm install botbuilder-facebookextension --save`. Choose which part of this package you would like to implement in your code.
@@ -41,3 +41,6 @@ bot.dialog('/', [
     }
 ]);
 ```
+
+## License
+MIT
