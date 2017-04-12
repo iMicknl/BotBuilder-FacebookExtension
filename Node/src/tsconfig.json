@@ -5,7 +5,8 @@
         "sourceMap": false,
         "outDir": "../lib",
         "noEmitOnError": true,
-        "removeComments": true
+        "removeComments": true,
+        "declaration": true
     },
     "exclude": [
         ""
