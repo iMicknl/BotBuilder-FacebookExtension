@@ -1,4 +1,4 @@
-# BotBuilder Facebook Extension
+# BotBuilder Facebook Extension (NodeJS)
 
 ## Features
 * User Profile API
@@ -41,6 +41,3 @@ bot.dialog('/', [
     }
 ]);
 ```
-
-## Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
