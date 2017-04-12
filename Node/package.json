@@ -1,0 +1,26 @@
+{
+  "name": "botbuilder-facebookextension",
+  "version": "1.0.0",
+  "description": "Collection of useful Facebook add-ons for the Bot Builder SDK.",
+  "main": "./lib/botbuilder-facebook.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/iMicknl/BotBuilder-FacebookExtension.git"
+  },
+  "keywords": [
+    "botbuilder"
+  ],
+  "author": "Mick Vleeshouwer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iMicknl/BotBuilder-FacebookExtension/issues"
+  },
+  "homepage": "https://github.com/iMicknl/BotBuilder-FacebookExtension/node/#readme",
+  "dependencies": {
+    "botbuilder": "^3.7.0",
+    "request": "^2.81.0"
+  }
+}
