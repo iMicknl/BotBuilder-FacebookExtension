@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var request = require("request");
+var request = require("request-promise");
 var graphApiUrl = 'https://graph.facebook.com/v2.6';
 var defaultFields = ['first_name', 'last_name', 'profile_pic', 'locale', 'timezone', 'gender', 'is_payment_enabled', 'last_ad_referral'];
 var Facebook = (function () {
@@ -21,34 +21,33 @@ var Facebook = (function () {
                     return;
                 }
                 var fields = ((options.fields !== undefined && options.fields.length > 0) ? options.fields : defaultFields);
-                request({
+                var userProfileRequest = {
                     url: graphApiUrl + "/" + session.message.address.user.id + "?fields=" + fields.join(),
                     qs: { access_token: options.accessToken },
-                    method: 'GET'
-                }, function (error, response, body) {
-                    if (!error && response.statusCode === 200) {
-                        var user = JSON.parse(body);
-                        for (var _i = 0, fields_1 = fields; _i < fields_1.length; _i++) {
-                            var field = fields_1[_i];
-                            if (user[field] === undefined) {
-                                continue;
-                            }
-                            session.userData[field] = user[field];
+                    method: 'GET',
+                    json: true
+                };
+                request(userProfileRequest)
+                    .then(function (user) {
+                    for (var _i = 0, fields_1 = fields; _i < fields_1.length; _i++) {
+                        var field = fields_1[_i];
+                        if (user[field] === undefined) {
+                            continue;
                         }
-                        session.userData.facebook_last_updated = currentTime;
+                        session.userData[field] = user[field];
+                    }
+                    session.userData.facebook_last_updated = currentTime;
+                })
+                    .catch(function (response) {
+                    for (var _i = 0, fields_2 = fields; _i < fields_2.length; _i++) {
+                        var field = fields_2[_i];
+                        session.userData[field] = '';
+                    }
+                    if (response.error !== undefined) {
+                        console.error(response.error);
                     }
                     else {
-                        for (var _a = 0, fields_2 = fields; _a < fields_2.length; _a++) {
-                            var field = fields_2[_a];
-                            session.userData[field] = '';
-                        }
-                        body = JSON.parse(body);
-                        if (body.error) {
-                            console.error(body.error);
-                        }
-                        else {
-                            console.error(error);
-                        }
+                        console.log(response);
                     }
                 });
                 next();

@@ -1,5 +1,5 @@
 import { IMiddlewareMap, Session, IMessage } from 'botbuilder';
-import * as request from 'request';
+import * as request from 'request-promise';
 
 //=========================================================
 // User Profile API
@@ -41,15 +41,15 @@ export class Facebook {
                 const fields = ((options.fields !== undefined && options.fields.length > 0) ? options.fields : defaultFields);
 
                 // Retrieve new profile data
-                request({
+                const userProfileRequest = {
                     url: `${graphApiUrl}/${session.message.address.user.id}?fields=${fields.join()}`,
                     qs: { access_token: options.accessToken },
-                    method: 'GET'
-                }, (error, response, body) => {
+                    method: 'GET',
+                    json: true
+                };
 
-                    if (!error && response.statusCode === 200) {
-                        const user = JSON.parse(body);
-
+                request(userProfileRequest)
+                    .then((user: any) => {
                         // Save profile to userData
                         for (let field of fields) {
                             // Check if field exists
@@ -62,22 +62,19 @@ export class Facebook {
 
                         // Add current time
                         session.userData.facebook_last_updated = currentTime;
-                    } else {
-                        // Set default values
+                    })
+
+                    .catch((response) => {
                         for (let field of fields) {
                             session.userData[field] = '';
                         }
 
-                        body = JSON.parse(body);
-
-                        if (body.error) {
-                            console.error(body.error);
+                        if (response.error !== undefined) {
+                            console.error(response.error);
                         } else {
-                            console.error(error);
+                            console.log(response);
                         }
-
-                    }
-                });
+                    });
 
                 next();
             }

@@ -21,6 +21,7 @@
   "homepage": "https://github.com/iMicknl/BotBuilder-FacebookExtension/node/#readme",
   "dependencies": {
     "botbuilder": "^3.7.0",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0"
   }
 }
