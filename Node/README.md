@@ -43,7 +43,8 @@ bot.dialog('/', [
 ```
 
 ### Referrals & Postbacks
-[Referrals](https://developers.facebook.com/docs/messenger-platform/webhook-reference/referral) and [postbacks](https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback) are a way to guide your user to a specific dialog, without starting a text chat first. With the ReferralRecognizer you are able to map a dialog to a specific referral or postback. 
+With [referrals](https://developers.facebook.com/docs/messenger-platform/webhook-reference/referral) and [postbacks](https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback) you can guide your user to a specific dialog, without having to start a textchat first. With the ReferralRecognizer you are able to map a dialog to a specific referral- or postback id. 
+
 Supports: [Send to Messenger Plugin](https://developers.facebook.com/docs/messenger-platform/plugin-reference/send-to-messenger), [Get Started Button](https://developers.facebook.com/docs/messenger-platform/messenger-profile/get-started-button), [Persistent Menu](https://developers.facebook.com/docs/messenger-platform/messenger-profile/persistent-menu), [Referral link (m.me)](https://developers.facebook.com/docs/messenger-platform/webhook-reference/referral).
 
 **Example (ES6)**
