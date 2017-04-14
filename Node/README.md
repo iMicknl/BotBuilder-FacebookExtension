@@ -19,9 +19,9 @@
 Install the package through NPM. `npm install botbuilder-facebookextension --save`. Choose which part of this package you would like to implement in your code.
 
 ### User Profile API 
-In order to populate the userdata with the Facebook userdata, you can use this Middleware. It will automatically retrieve the data from Facebook and store it before your first reply. By default it will refresh the userdata every day, but you can change that by passing a settingsobject.
+In order to populate the userdata with the Facebook userdata, you can use this middleware. It will automatically retrieve the data from Facebook and store it before your first reply. By default it will refresh the userdata every day, but you can change it via the settings object.
 
-A required setting for the Middleware is the `accessToken` that you use in the Bot Framework settings. Optional setting are `fields` (array of [fieldnames](https://developers.facebook.com/docs/messenger-platform/user-profile)) and `expireMinutes` (number of minutes to cache data).
+A required setting for the middleware is the `accessToken` that you use in the Bot Framework settings. Optional settings are `fields` (array of [fieldnames](https://developers.facebook.com/docs/messenger-platform/user-profile)) and `expireMinutes` (number of minutes to cache data).
 
 **Example (ES6)**
 ```javascript
@@ -43,7 +43,8 @@ bot.dialog('/', [
 ```
 
 ### Referrals & Postbacks
-Referrals and postbacks are a way to guide your user to a specific dialog, without starting a text chat first. With the ReferralRecognizer you are able to map a dialog to a specific referral or postback.
+[Referrals](https://developers.facebook.com/docs/messenger-platform/webhook-reference/referral) and [postbacks](https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback) are a way to guide your user to a specific dialog, without starting a text chat first. With the ReferralRecognizer you are able to map a dialog to a specific referral or postback. 
+Supports: [Send to Messenger Plugin](https://developers.facebook.com/docs/messenger-platform/plugin-reference/send-to-messenger), [Get Started Button](https://developers.facebook.com/docs/messenger-platform/messenger-profile/get-started-button), [Persistent Menu](https://developers.facebook.com/docs/messenger-platform/messenger-profile/persistent-menu), [Referral link (m.me)](https://developers.facebook.com/docs/messenger-platform/webhook-reference/referral).
 
 **Example (ES6)**
 ```javascript
@@ -51,10 +52,10 @@ import { ReferralRecognizer } from 'botbuilder-facebookextension';
 
 bot.recognizer(
     new ReferralRecognizer() ({
-        referral: true, // Optional
-        postback: true, // Optional
-        referralValue: true, // Optional
-        postbackValue: true // Optional,
+        referral: true, // Optional - Enables the referral recognizer
+        postback: true, // Optional - Enables the postback recognizer
+        referralValue: true, // Optional - Uses referral as entity value
+        postbackValue: true // Optional - Uses postback payload as entity value
     })
 );
 

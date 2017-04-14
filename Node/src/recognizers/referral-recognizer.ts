@@ -2,7 +2,7 @@ import { IEntity, IIntentRecognizer, IRecognizeContext, IIntentRecognizerResult 
 
 //=========================================================
 //
-// Checkbox Plugin / Sends to Messenger
+// Checkbox Plugin / Send to Messenger
 // https://developers.facebook.com/docs/messenger-platform/plugin-reference
 //
 // Get Started Button
