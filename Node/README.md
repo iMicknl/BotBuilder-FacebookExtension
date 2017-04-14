@@ -25,15 +25,15 @@ A required setting for the Middleware is the `accessToken` that you use in the B
 
 Example:
 ```javascript
-import { FBUserProfile } from 'botbuilder-facebookextension';
+import { RetrieveUserProfile } from 'botbuilder-facebookextension';
 
-bot.use(FBUserProfile(
-    {   
+bot.use(
+    RetrieveUserProfile({
         accessToken: 'PAGE_ACCESS_TOKEN',
         expireMinutes: 60, // OPTIONAL
         fields: ['first_name', 'last_name', 'gender'] // OPTIONAL
-    }
-));
+    })
+);
 
 bot.dialog('/', [
     (session, args, next) => {
