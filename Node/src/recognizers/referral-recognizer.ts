@@ -70,7 +70,7 @@ export class ReferralRecognizer {
             }
 
             if (this.options.referralValue) {
-                result.intent = referral.ref;
+                result.intent = referral.ref.toLowerCase();
             } else {
                 result.intent = referral.type;
             }
@@ -94,7 +94,7 @@ export class ReferralRecognizer {
             }
 
             if (this.options.postbackValue) {
-                result.intent = postback.payload;
+                result.intent = postback.payload.toLowerCase();
             } else {
                 result.intent = 'POSTBACK';
             }
