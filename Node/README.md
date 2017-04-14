@@ -24,7 +24,7 @@ In order to populate the userdata with the Facebook userdata, you can use this M
 A required setting for the Middleware is the `accessToken` that you use in the Bot Framework settings. Optional setting are `fields` (array of [fieldnames](https://developers.facebook.com/docs/messenger-platform/user-profile)) and `expireMinutes` (number of minutes to cache data).
 
 Example:
-```typescript
+```javascript
 import { FBUserProfile } from 'botbuilder-facebookextension';
 
 bot.use(FBUserProfile(
