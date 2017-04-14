@@ -45,7 +45,7 @@ bot.dialog('/', [
 ### Referrals & Postbacks
 With [referrals](https://developers.facebook.com/docs/messenger-platform/webhook-reference/referral) and [postbacks](https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback) you can guide your user to a specific dialog, without having to start a textchat first. With the ReferralRecognizer you are able to map a dialog to a specific referral- or postback id. 
 
-Supports: [Send to Messenger Plugin](https://developers.facebook.com/docs/messenger-platform/plugin-reference/send-to-messenger), [Get Started Button](https://developers.facebook.com/docs/messenger-platform/messenger-profile/get-started-button), [Persistent Menu](https://developers.facebook.com/docs/messenger-platform/messenger-profile/persistent-menu), [Referral link (m.me)](https://developers.facebook.com/docs/messenger-platform/webhook-reference/referral).
+Supports: [Send to Messenger Plugin](https://developers.facebook.com/docs/messenger-platform/plugin-reference/send-to-messenger), [Get Started Button](https://developers.facebook.com/docs/messenger-platform/messenger-profile/get-started-button), [Persistent Menu](https://developers.facebook.com/docs/messenger-platform/messenger-profile/persistent-menu), [Referral link (m.me or ad)](https://developers.facebook.com/docs/messenger-platform/webhook-reference/referral).
 
 **Example (ES6)**
 ```javascript
@@ -68,6 +68,15 @@ bot.dialog('/coupon', [
 ]).triggerAction({
     matches: 'coupon'
 });
+```
+
+It is possible to retrieve all values from the referral or postback object by retrieving the entity. You can retrieve the entity on the regular way, by requesting the `referral` or `postback` type. In this example you can see how to check the source of the referral, which can be shortlink (m.me) or ad.
+
+```javascript
+if (args.intent !== undefined && args.intent.entities !== undefined) {
+    const entity = EntityRecognizer.findEntity(args.intent.entities, 'referral'); // or 'postback'
+    console.log(entity.facebook.source); //SHORTLINK or AD
+}
 ```
 
 ## License
