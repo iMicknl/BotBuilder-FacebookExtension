@@ -36,7 +36,7 @@ bot.use(FBUserProfile(
 ));
 
 bot.dialog('/', [
-    (session: Session, args: any, next) => {
+    (session, args, next) => {
         session.send(`Hi ${session.userData.first_name}!`); // The userData is prepopulated by the Middleware
     }
 ]);
