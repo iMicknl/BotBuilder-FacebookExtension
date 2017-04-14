@@ -2,15 +2,15 @@
 
 ## Features
 * User Profile API
+* Referral and postback handling
 
 ## Wishlist
-* Referral handling (plugins, menu)
 * Quick Replies
 * Tags
 * Webview
 * (Application) Insights
-* Get Started button / Menu button
 * Account Linking
+* Sticker / Like Recognizer
 
 ## Requirements
 * [Microsoft BotBuilder](https://github.com/Microsoft/BotBuilder) (NodeJS)
@@ -19,7 +19,7 @@
 Install the package through NPM. `npm install botbuilder-facebookextension --save`. Choose which part of this package you would like to implement in your code.
 
 ### User Profile API 
-In order to populate the userdata with the Facebook userdata, you can use this middleware. It will automatically retrieve the data from Facebook and store it before your first reply. By default it will refresh the userdata every day, but you can change it via the settings object.
+In order to populate the userdata with the Facebook userdata, you can use a middleware. It will automatically retrieve the data from Facebook and store it before your first reply. By default it will refresh the userdata every day, but you can change it by passing an amount of minutes to the settings object.
 
 A required setting for the middleware is the `accessToken` that you use in the Bot Framework settings. Optional settings are `fields` (array of [fieldnames](https://developers.facebook.com/docs/messenger-platform/user-profile)) and `expireMinutes` (number of minutes to cache data).
 
