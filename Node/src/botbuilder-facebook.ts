@@ -1,8 +1,9 @@
 import { RetrieveUserProfile } from './middleware/user-profile'
-import { ReferralRecognizer } from './recognizers/referral-recognizer';
+import { EventRecognizer } from './recognizers/event-recognizer';
 
 declare var exports: any;
 
 exports.FBUserProfile = RetrieveUserProfile;
 exports.RetrieveUserProfile = RetrieveUserProfile;
-exports.ReferralRecognizer = ReferralRecognizer;
+exports.ReferralRecognizer = EventRecognizer;
+exports.EventRecognizer = EventRecognizer;

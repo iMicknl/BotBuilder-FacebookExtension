@@ -2,7 +2,7 @@
 
 ## Features
 * User Profile API
-* Referral and postback handling
+* Referral, optin and postback handling
 
 ## Wishlist
 * Quick Replies
@@ -43,16 +43,16 @@ bot.dialog('/', [
 ```
 
 ### Referrals & Postbacks
-With [referrals](https://developers.facebook.com/docs/messenger-platform/webhook-reference/referral) and [postbacks](https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback) you can guide your user to a specific dialog, without having to start a textchat first. With the ReferralRecognizer you are able to map a dialog to a specific referral- or postback id. 
+With [referrals](https://developers.facebook.com/docs/messenger-platform/webhook-reference/referral) and [postbacks](https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback) you can guide your user to a specific dialog, without having to start a textchat first. With the EventRecognizer you are able to map a dialog to a specific referral- or postback id. 
 
 Supports: [Send to Messenger Plugin](https://developers.facebook.com/docs/messenger-platform/plugin-reference/send-to-messenger), [Get Started Button](https://developers.facebook.com/docs/messenger-platform/messenger-profile/get-started-button), [Persistent Menu](https://developers.facebook.com/docs/messenger-platform/messenger-profile/persistent-menu), [Referral link (m.me or ad)](https://developers.facebook.com/docs/messenger-platform/webhook-reference/referral).
 
 **Example (ES6)**
 ```javascript
-import { ReferralRecognizer } from 'botbuilder-facebookextension';
+import { EventRecognizer } from 'botbuilder-facebookextension';
 
 bot.recognizer(
-    new ReferralRecognizer() ({
+    new EventRecognizer() ({
         referral: true, // Optional - Enables the referral recognizer
         postback: true, // Optional - Enables the postback recognizer
         referralValue: true, // Optional - Uses referral as entity value

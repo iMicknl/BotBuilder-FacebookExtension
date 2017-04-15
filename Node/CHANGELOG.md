@@ -4,10 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unreleased]
+### Added
+- Added support for postins to EventRecognizer (previously ReferralRecognizer)
+
+### Changed
+- Renamed `ReferralRecognizer` to `EventRecognizer`. (still backwards compatible).
+- 
+
 ## 1.1.0 - 2017-04-15
 ### Added
 - Recognizer for referrals and postbacks.
-- Add directory with example projects
+- Fix wrong type on postback result
 
 ### Changed
 - Renamed `FBUserProfile` to `RetrieveUserProfile`. (still backwards compatible).
