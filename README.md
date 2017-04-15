@@ -9,7 +9,8 @@ The [User Profile API](https://developers.facebook.com/docs/messenger-platform/u
 ### Referrals & Postbacks
 With [referrals](https://developers.facebook.com/docs/messenger-platform/webhook-reference/referral) and [postbacks](https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback) you can guide your user to a specific dialog, without having to start a textchat first. With the ReferralRecognizer you are able to map a dialog to a specific referral- or postback id. 
 
-## Contribute
+## Contribute [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/dwyl/esta/issues)
+
 Currently only the BotBuilder NodeJS SDK is supported. Pull requests for C# support are welcome!
 
 ## License

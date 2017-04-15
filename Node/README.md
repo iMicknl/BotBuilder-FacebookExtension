@@ -1,4 +1,4 @@
-# BotBuilder Facebook Extension (NodeJS)
+# BotBuilder Facebook Extension (NodeJS) [![npm version](https://badge.fury.io/js/botbuilder-facebookextension.svg)](https://badge.fury.io/js/botbuilder-facebookextension)
 
 ## Features
 * User Profile API
