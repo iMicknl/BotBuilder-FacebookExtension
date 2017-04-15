@@ -65,8 +65,8 @@ bot.dialog('/coupon', [
 });
 
 // Postback
-// Invoke by pressing get started button or a menu option
-// Make sure you set the correct payload for the get started button!
+// Invoke by pressing Get Started button or a menu option
+// Make sure you set the correct payload for the Get Started button!
 bot.dialog('/get-started', [
     (session, args, next) => {
         session.endDialog(`Thanks for pressing the Get Started button! ;-)`)
@@ -75,9 +75,9 @@ bot.dialog('/get-started', [
     matches: 'payload_get_started'
 });
 
-// Postback
-// Invoke by pressing get started button
-// Make sure you set the correct payload for the Send to Messenger plugin!
+// Optin
+// Invoke by pressing 'Send to Messenger Plugin' button
+// Make sure you set the correct payload in the Send to Messenger plugin!
 bot.dialog('/send-to-messenger', [
     (session, args, next) => {
         session.endDialog(`Thanks for pressing the Send to Messenger plugin! <3`)
