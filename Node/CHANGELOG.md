@@ -10,12 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
 - Renamed `ReferralRecognizer` to `EventRecognizer`. (still backwards compatible).
-- 
+- Fix wrong type on postback result
 
 ## 1.1.0 - 2017-04-15
 ### Added
 - Recognizer for referrals and postbacks.
-- Fix wrong type on postback result
 
 ### Changed
 - Renamed `FBUserProfile` to `RetrieveUserProfile`. (still backwards compatible).
