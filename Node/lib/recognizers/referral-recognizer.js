@@ -25,7 +25,7 @@ var ReferralRecognizer = (function () {
                 facebook: referral
             };
             if (this.options.referralValue) {
-                result.intent = referral.ref;
+                result.intent = referral.ref.toLowerCase();
             }
             else {
                 result.intent = referral.type;
@@ -44,7 +44,7 @@ var ReferralRecognizer = (function () {
                 facebook: postback.payload
             };
             if (this.options.postbackValue) {
-                result.intent = postback.payload;
+                result.intent = postback.payload.toLowerCase();
             }
             else {
                 result.intent = 'POSTBACK';
