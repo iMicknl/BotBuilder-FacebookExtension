@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 ### Added
 - Recognizer for referrals and postbacks.
+- Add directory with example projects
 
 ### Changed
 - Renamed `FBUserProfile` to `RetrieveUserProfile`. (still backwards compatible).
