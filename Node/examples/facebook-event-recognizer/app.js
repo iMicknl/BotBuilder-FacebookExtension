@@ -6,7 +6,7 @@ dotenv.config();
 
 import * as restify from 'restify';
 import { ChatConnector, UniversalBot, Middleware } from 'botbuilder';
-import { ReferralRecognizer } from 'botbuilder-facebookextension';
+import { EventRecognizer } from 'botbuilder-facebookextension';
 
 //=========================================================
 // Bot Setup
@@ -19,8 +19,8 @@ const connector = new ChatConnector({
 
 const bot = new UniversalBot(connector);
 
-// Load ReferralRecognizer, can be used together with other recognizers like LUISRecognizer
-bot.recognizer(new ReferralRecognizer());
+// Load EventRecognizer, can be used together with other recognizers like LUISRecognizer
+bot.recognizer(new EventRecognizer());
 
 //=========================================================
 // Server Setup
@@ -65,12 +65,24 @@ bot.dialog('/coupon', [
 });
 
 // Postback
-// Invoke by pressing get started button
+// Invoke by pressing get started button or a menu option
 // Make sure you set the correct payload for the get started button!
 bot.dialog('/get-started', [
     (session, args, next) => {
         session.endDialog(`Thanks for pressing the Get Started button! ;-)`)
     }
 ]).triggerAction({
-    matches: 'PAYLOAD_GET_STARTED'
+    matches: 'payload_get_started'
 });
+
+// Postback
+// Invoke by pressing get started button
+// Make sure you set the correct payload for the Send to Messenger plugin!
+bot.dialog('/send-to-messenger', [
+    (session, args, next) => {
+        session.endDialog(`Thanks for pressing the Send to Messenger plugin! <3`)
+    }
+]).triggerAction({
+    matches: 'pass_through_param'
+});
+
