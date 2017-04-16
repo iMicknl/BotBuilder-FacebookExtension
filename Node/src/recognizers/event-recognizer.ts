@@ -17,14 +17,19 @@ import { IEntity, IIntentRecognizer, IRecognizeContext, IIntentRecognizerResult 
 // Postback Received Callback
 // https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback
 //
+// Optin Callback
+// https://developers.facebook.com/docs/messenger-platform/webhook-reference/optins
+//
 //=========================================================
 
 export interface IReferralRecognizerOptions {
     referral?: boolean;
     postback?: boolean;
+    optin?: boolean;
 
     referralValue?: boolean;
     postbackValue?: boolean;
+    optinValue?: boolean;
 }
 
 export interface IFacebookReferralEntity extends IEntity {
@@ -35,7 +40,7 @@ export interface IFacebookReferralEntity extends IEntity {
     }
 }
 
-export class ReferralRecognizer {
+export class EventRecognizer {
 
     private options: IReferralRecognizerOptions;
 
@@ -43,8 +48,10 @@ export class ReferralRecognizer {
         //Default options
         options.referral = (options.referral !== undefined ? options.referral : true);
         options.postback = (options.postback !== undefined ? options.postback : true);
+        options.optin = (options.optin !== undefined ? options.optin : true);
         options.referralValue = (options.referralValue !== undefined ? options.referralValue : true);
         options.postbackValue = (options.postbackValue !== undefined ? options.postbackValue : true);
+        options.optinValue = (options.optinValue !== undefined ? options.optinValue : true);
 
         this.options = options;
     }
@@ -88,15 +95,39 @@ export class ReferralRecognizer {
 
             const entity = {
                 entity: postback.payload,
-                type: 'referral',
+                type: 'postback',
                 score: 1.0,
-                facebook: postback.payload
+                facebook: postback
             }
 
             if (this.options.postbackValue) {
                 result.intent = postback.payload.toLowerCase();
             } else {
-                result.intent = 'POSTBACK';
+                result.intent = 'postback';
+            }
+
+            result.score = 1.0;
+            result.entities = [entity];
+
+            done(null, result);
+            return;
+        }
+
+        // Check if message contains optin
+        if (context.message.sourceEvent.optin !== undefined && this.options.optin) {
+            const optin = context.message.sourceEvent.optin;
+
+            const entity = {
+                entity: optin.ref,
+                type: 'optin',
+                score: 1.0,
+                facebook: optin
+            }
+
+            if (this.options.postbackValue) {
+                result.intent = optin.ref.toLowerCase();
+            } else {
+                result.intent = 'optin';
             }
 
             result.score = 1.0;

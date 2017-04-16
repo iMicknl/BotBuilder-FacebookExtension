@@ -2,8 +2,10 @@ import { IEntity, IIntentRecognizer, IRecognizeContext, IIntentRecognizerResult 
 export interface IReferralRecognizerOptions {
     referral?: boolean;
     postback?: boolean;
+    optin?: boolean;
     referralValue?: boolean;
     postbackValue?: boolean;
+    optinValue?: boolean;
 }
 export interface IFacebookReferralEntity extends IEntity {
     facebook: {
@@ -12,7 +14,7 @@ export interface IFacebookReferralEntity extends IEntity {
         type: string;
     };
 }
-export declare class ReferralRecognizer {
+export declare class EventRecognizer {
     private recognizer;
     private options;
     constructor(recognizer: IIntentRecognizer, options?: IReferralRecognizerOptions);
