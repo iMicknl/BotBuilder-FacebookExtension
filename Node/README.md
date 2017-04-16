@@ -52,11 +52,13 @@ Supports: [Send to Messenger Plugin](https://developers.facebook.com/docs/messen
 import { EventRecognizer } from 'botbuilder-facebookextension';
 
 bot.recognizer(
-    new EventRecognizer() ({
+    new EventRecognizer({
         referral: true, // Optional - Enables the referral recognizer
         postback: true, // Optional - Enables the postback recognizer
+        optin: true,    // Optional - Enables the optin recognizer
         referralValue: true, // Optional - Uses referral as entity value
-        postbackValue: true // Optional - Uses postback payload as entity value
+        postbackValue: true, // Optional - Uses postback payload as entity value
+        optinValue: true     // Optional - Uses optin referral as entity value
     })
 );
 
