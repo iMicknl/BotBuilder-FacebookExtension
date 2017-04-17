@@ -6,7 +6,7 @@ dotenv.config();
 
 import * as restify from 'restify';
 import { ChatConnector, UniversalBot, Middleware } from 'botbuilder';
-import { EventRecognizer } from 'botbuilder-facebookextension';
+import { CallbackRecognizer } from 'botbuilder-facebookextension';
 
 //=========================================================
 // Bot Setup
@@ -19,8 +19,8 @@ const connector = new ChatConnector({
 
 const bot = new UniversalBot(connector);
 
-// Load EventRecognizer, can be used together with other recognizers like LUISRecognizer
-bot.recognizer(new EventRecognizer());
+// Load CallbackRecognizer, can be used together with other recognizers like LUISRecognizer
+bot.recognizer(new CallbackRecognizer());
 
 //=========================================================
 // Server Setup

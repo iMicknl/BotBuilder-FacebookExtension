@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var EventRecognizer = (function () {
-    function EventRecognizer(recognizer, options) {
+var CallbackRecognizer = (function () {
+    function CallbackRecognizer(recognizer, options) {
         if (options === void 0) { options = {}; }
         this.recognizer = recognizer;
         options.referral = (options.referral !== undefined ? options.referral : true);
@@ -12,7 +12,7 @@ var EventRecognizer = (function () {
         options.optinValue = (options.optinValue !== undefined ? options.optinValue : true);
         this.options = options;
     }
-    EventRecognizer.prototype.recognize = function (context, done) {
+    CallbackRecognizer.prototype.recognize = function (context, done) {
         var result = { score: 0.0, intent: null };
         if (context.message.source !== 'facebook') {
             done(null, result);
@@ -77,6 +77,6 @@ var EventRecognizer = (function () {
         }
         done(null, result);
     };
-    return EventRecognizer;
+    return CallbackRecognizer;
 }());
-exports.EventRecognizer = EventRecognizer;
+exports.CallbackRecognizer = CallbackRecognizer;

@@ -1,5 +1,5 @@
 import { IEntity, IIntentRecognizer, IRecognizeContext, IIntentRecognizerResult } from 'botbuilder';
-export interface IReferralRecognizerOptions {
+export interface ICallbackRecognizerOptions {
     referral?: boolean;
     postback?: boolean;
     optin?: boolean;
@@ -14,9 +14,9 @@ export interface IFacebookReferralEntity extends IEntity {
         type: string;
     };
 }
-export declare class EventRecognizer {
+export declare class CallbackRecognizer {
     private recognizer;
     private options;
-    constructor(recognizer: IIntentRecognizer, options?: IReferralRecognizerOptions);
+    constructor(recognizer: IIntentRecognizer, options?: ICallbackRecognizerOptions);
     recognize(context: IRecognizeContext, done: (err: Error, result: IIntentRecognizerResult) => void): void;
 }
