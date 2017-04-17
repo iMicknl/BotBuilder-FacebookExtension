@@ -1,6 +1,6 @@
 {
   "name": "botbuilder-facebookextension",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Collection of useful Facebook add-ons for the Bot Builder SDK.",
   "main": "./lib/botbuilder-facebook.js",
   "scripts": {

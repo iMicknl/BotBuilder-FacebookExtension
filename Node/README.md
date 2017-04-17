@@ -37,22 +37,22 @@ bot.use(
 
 bot.dialog('/', [
     (session, args, next) => {
-        session.send(`Hi ${session.userData.first_name}!`); // The userData is prepopulated by the Middleware
+        session.send(`Hi ${session.userData.first_name}!`); // The userData is prepopulated by the middleware
     }
 ]);
 ```
 
-### Events
-Facebook uses [referrals](https://developers.facebook.com/docs/messenger-platform/webhook-reference/referral), [optins](https://developers.facebook.com/docs/messenger-platform/webhook-reference/optins) and [postbacks](https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback) to send a custom payload to your chatbot. We can use this payload to trigger a specific dialog without having to start a textchat first. With the EventRecognizer you are able to map a dialog to a specific referral-, postin- or postback payload. 
+### Callbacks
+Facebook uses [referrals](https://developers.facebook.com/docs/messenger-platform/webhook-reference/referral), [optins](https://developers.facebook.com/docs/messenger-platform/webhook-reference/optins) and [postbacks](https://developers.facebook.com/docs/messenger-platform/webhook-reference/postback) to send a custom payload to your chatbot. We can use this payload to trigger a specific dialog without having to start a textchat first. With the CallbackRecognizer you are able to map a dialog to a specific referral-, postin- or postback payload. 
 
 Supports: [Send to Messenger Plugin](https://developers.facebook.com/docs/messenger-platform/plugin-reference/send-to-messenger), [Get Started Button](https://developers.facebook.com/docs/messenger-platform/messenger-profile/get-started-button), [Persistent Menu](https://developers.facebook.com/docs/messenger-platform/messenger-profile/persistent-menu), [Referral link (m.me or ad)](https://developers.facebook.com/docs/messenger-platform/webhook-reference/referral).
 
 **Example (ES6)**
 ```javascript
-import { EventRecognizer } from 'botbuilder-facebookextension';
+import { CallbackRecognizer } from 'botbuilder-facebookextension';
 
 bot.recognizer(
-    new EventRecognizer({
+    new CallbackRecognizer({
         referral: true, // Optional - Enables the referral recognizer
         postback: true, // Optional - Enables the postback recognizer
         optin: true,    // Optional - Enables the optin recognizer
@@ -72,7 +72,7 @@ bot.dialog('/coupon', [
 });
 ```
 
-It is possible to retrieve all values from the referral or postback object by retrieving the entity. You can retrieve the entity on the regular way, by requesting the `referral` or `postback` type. In this example you can see how to check the source of the referral, which can be shortlink (m.me) or ad.
+It is possible to retrieve all values from the calback object by retrieving the entity. You can retrieve the entity on the regular way, by requesting the `referral`, `optin` or `postback` type. In this example you can see how to check the source of the referral, which can be shortlink (m.me) or ad.
 
 ```javascript
 if (args.intent !== undefined && args.intent.entities !== undefined) {
