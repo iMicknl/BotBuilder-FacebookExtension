@@ -22,7 +22,7 @@ import { IEntity, IIntentRecognizer, IRecognizeContext, IIntentRecognizerResult 
 //
 //=========================================================
 
-export interface IReferralRecognizerOptions {
+export interface ICallbackRecognizerOptions {
     referral?: boolean;
     postback?: boolean;
     optin?: boolean;
@@ -40,11 +40,11 @@ export interface IFacebookReferralEntity extends IEntity {
     }
 }
 
-export class EventRecognizer {
+export class CallbackRecognizer {
 
-    private options: IReferralRecognizerOptions;
+    private options: ICallbackRecognizerOptions;
 
-    constructor(private recognizer: IIntentRecognizer, options: IReferralRecognizerOptions = {}) {
+    constructor(private recognizer: IIntentRecognizer, options: ICallbackRecognizerOptions = {}) {
         //Default options
         options.referral = (options.referral !== undefined ? options.referral : true);
         options.postback = (options.postback !== undefined ? options.postback : true);
