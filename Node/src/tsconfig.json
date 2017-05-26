@@ -6,7 +6,8 @@
         "outDir": "../lib",
         "noEmitOnError": true,
         "removeComments": true,
-        "declaration": true
+        "declaration": true,
+        "moduleResolution": "node"
     },
     "exclude": [
         ""
