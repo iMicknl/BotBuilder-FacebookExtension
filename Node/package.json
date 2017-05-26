@@ -26,12 +26,12 @@
   },
   "homepage": "https://github.com/iMicknl/BotBuilder-FacebookExtension/tree/master/Node#readme",
   "dependencies": {
-    "botbuilder": "^3.7.0",
+    "botbuilder": "^3.8.3",
     "request": "^2.81.0",
-    "request-promise": "^4.2.0"
+    "request-promise": "^4.2.1"
   },
   "devDependencies": {
-    "@types/node": "^7.0.12",
-    "typescript": "^2.2.2"
+    "@types/node": "^7.0.22",
+    "typescript": "^2.3.3"
   }
 }
