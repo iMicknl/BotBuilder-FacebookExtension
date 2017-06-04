@@ -34,6 +34,7 @@ exports.RetrieveUserProfile = function (options) {
                     session.userData[field] = user[field];
                 }
                 session.userData.facebook_last_updated = currentTime;
+                next();
             })
                 .catch(function (response) {
                 for (var _i = 0, fields_2 = fields; _i < fields_2.length; _i++) {
@@ -46,8 +47,8 @@ exports.RetrieveUserProfile = function (options) {
                 else {
                     console.log(response);
                 }
+                next();
             });
-            next();
         }
     };
 };
