@@ -45,9 +45,7 @@ bot.use(builder.Middleware.sendTyping());
 bot.dialog('/', [
     (session, args, next) => {
         let message = new builder.Message(session).text('This is a message with the ISSUE_RESOLUTION tag');
-        message = facebook.AddMessageTag(message, facebook.MessageTags.ISSUE_RESOLUTION);
-
-        console.log(message);
+        facebook.AddMessageTag(message, facebook.MessageTags.ISSUE_RESOLUTION);
 
         session.send(message);
     }
