@@ -1,23 +1,22 @@
 /*-----------------------------------------------------------------------------
 Example: Facebook User Profile API
 -----------------------------------------------------------------------------*/
-import * as dotenv from 'dotenv'
-dotenv.config();
+const dotenv = require('dotenv');
+const restify = require('restify');
 
-import * as restify from 'restify';
-import { ChatConnector, UniversalBot, Middleware } from 'botbuilder';
-import { RetrieveUserProfile } from 'botbuilder-facebookextension';
+const builder = require('botbuilder');
+const facebook = require('botbuilder-facebookextension');
 
 //=========================================================
 // Bot Setup
 //=========================================================
 // Configure ChatConnector
-const connector = new ChatConnector({
+const connector = new builder.ChatConnector({
     appId: process.env.MicrosoftAppId,
     appPassword: process.env.MicrosoftAppPassword,
 });
 
-const bot = new UniversalBot(connector);
+const bot = new builder.UniversalBot(connector);
 
 //=========================================================
 // Server Setup
@@ -37,11 +36,11 @@ server.listen(process.env.PORT || 3978, () => {
 // Bots Middleware
 //=========================================================
 // Anytime the major version is incremented any existing conversations will be restarted.
-bot.use(Middleware.dialogVersion({ version: 1.0, resetCommand: /^reset/i }));
-bot.use(Middleware.sendTyping());
+bot.use(builder.Middleware.dialogVersion({ version: 1.0, resetCommand: /^reset/i }));
+bot.use(builder.Middleware.sendTyping());
 
 // Load middlware which handles the Facebook User Profile API requests
-bot.use(RetrieveUserProfile({ accessToken: process.env.FacebookAccessToken }));
+bot.use( facebook.RetrieveUserProfile({ accessToken: process.env.FacebookAccessToken }));
 
 //=========================================================
 // Bots Dialogs
