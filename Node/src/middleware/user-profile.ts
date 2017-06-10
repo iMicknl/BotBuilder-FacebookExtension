@@ -60,6 +60,8 @@ export const RetrieveUserProfile = (options: IFacebookUserProfileOptions): IMidd
 
                     // Add current time
                     session.userData.facebook_last_updated = currentTime;
+
+                    next();
                 })
 
                 .catch((response) => {
@@ -72,9 +74,10 @@ export const RetrieveUserProfile = (options: IFacebookUserProfileOptions): IMidd
                     } else {
                         console.log(response);
                     }
+
+                    next();
                 });
 
-            next();
         }
     }
 }
