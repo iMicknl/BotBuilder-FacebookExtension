@@ -1,10 +1,7 @@
-import { RetrieveUserProfile } from './middleware/user-profile'
-import { CallbackRecognizer } from './recognizers/callback-recognizer';
+export * from './middleware/user-profile'
+export * from './recognizers/callback-recognizer';
+export * from './types/message-tags';
 
-declare var exports: any;
-
-exports.FBUserProfile = RetrieveUserProfile;
-exports.RetrieveUserProfile = RetrieveUserProfile;
-exports.ReferralRecognizer = CallbackRecognizer;
-exports.EventRecognizer = CallbackRecognizer;
-exports.CallbackRecognizer = CallbackRecognizer;
+// Deprecated since 1.2.0
+export { CallbackRecognizer as ReferralRecognizer} from './recognizers/callback-recognizer'; 
+export { CallbackRecognizer as EventRecognizer} from './recognizers/callback-recognizer';
