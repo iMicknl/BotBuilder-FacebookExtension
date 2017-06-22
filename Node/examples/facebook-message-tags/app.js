@@ -1,5 +1,5 @@
 /*-----------------------------------------------------------------------------
-Example: Facebook User Profile API
+Example: Message Tags
 -----------------------------------------------------------------------------*/
 const dotenv = require('dotenv');
 const restify = require('restify');
@@ -39,15 +39,14 @@ server.listen(process.env.PORT || 3978, () => {
 bot.use(builder.Middleware.dialogVersion({ version: 1.0, resetCommand: /^reset/i }));
 bot.use(builder.Middleware.sendTyping());
 
-// Load middlware which handles the Facebook User Profile API requests
-bot.use( facebook.RetrieveUserProfile({ accessToken: process.env.FacebookAccessToken }));
-
 //=========================================================
 // Bots Dialogs
 //=========================================================
 bot.dialog('/', [
     (session, args, next) => {
-        // The userData is prepopulated by the Middleware
-        session.send(`Hi ${session.userData.first_name}! You are a ${session.userData.gender} and you speak ${session.userData.locale}.`);
+        let message = new builder.Message(session).text('This is a message with the ISSUE_RESOLUTION tag');
+        facebook.AddMessageTag(message, facebook.MessageTags.ISSUE_RESOLUTION);
+
+        session.send(message);
     }
 ]);

@@ -1,0 +1,17 @@
+{
+  "name": "botbuilder-facebookextension-examples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "botbuilder": "^3.8.4",
+    "botbuilder-facebookextension": "^1.2.3",
+    "dotenv": "^4.0.0",
+    "restify": "^4.3.0"
+  }
+}

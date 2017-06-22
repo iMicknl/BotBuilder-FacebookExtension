@@ -23,12 +23,12 @@ In order to populate the userdata with the Facebook userdata, you can use a midd
 
 A required setting for the middleware is the `accessToken` that you use in the Bot Framework settings. Optional settings are `fields` (array of [fieldnames](https://developers.facebook.com/docs/messenger-platform/user-profile)) and `expireMinutes` (number of minutes to cache data).
 
-**Example (ES6)**
+**Example**
 ```javascript
-import { RetrieveUserProfile } from 'botbuilder-facebookextension';
+const facebook = require('botbuilder-facebookextension');
 
 bot.use(
-    RetrieveUserProfile({
+    facebook.RetrieveUserProfile({
         accessToken: 'PAGE_ACCESS_TOKEN',
         expireMinutes: 60, // OPTIONAL
         fields: ['first_name', 'last_name', 'gender'] // OPTIONAL
@@ -47,12 +47,12 @@ Facebook uses [referrals](https://developers.facebook.com/docs/messenger-platfor
 
 Supports: [Send to Messenger Plugin](https://developers.facebook.com/docs/messenger-platform/plugin-reference/send-to-messenger), [Get Started Button](https://developers.facebook.com/docs/messenger-platform/messenger-profile/get-started-button), [Persistent Menu](https://developers.facebook.com/docs/messenger-platform/messenger-profile/persistent-menu), [Referral link (m.me or ad)](https://developers.facebook.com/docs/messenger-platform/webhook-reference/referral).
 
-**Example (ES6)**
+**Example**
 ```javascript
-import { CallbackRecognizer } from 'botbuilder-facebookextension';
+const facebook = require('botbuilder-facebookextension');
 
 bot.recognizer(
-    new CallbackRecognizer({
+    new facebook.CallbackRecognizer({
         referral: true, // Optional - Enables the referral recognizer
         postback: true, // Optional - Enables the postback recognizer
         optin: true,    // Optional - Enables the optin recognizer
@@ -76,9 +76,25 @@ It is possible to retrieve all values from the calback object by retrieving the 
 
 ```javascript
 if (args.intent !== undefined && args.intent.entities !== undefined) {
-    const entity = EntityRecognizer.findEntity(args.intent.entities, 'referral'); // or 'postback' / 'optin'
+    const entity = builder.EntityRecognizer.findEntity(args.intent.entities, 'referral'); // or 'postback' / 'optin'
     console.log(entity.facebook.source); //SHORTLINK or AD
 }
+```
+
+### Message Tags
+Adding a [Message Tag](https://developers.facebook.com/docs/messenger-platform/send-api-reference/tags/) allows you to send it outside the 24+1 window, for a limited number of use cases (shipping update, reservations, and issue resolution), per Messenger Platform policy. You can find all possbile tags in the [Message Tag documentation](https://developers.facebook.com/docs/messenger-platform/send-api-reference/tags/).
+
+```javascript
+const facebook = require('botbuilder-facebookextension');
+
+bot.dialog('/', [
+    (session, args, next) => {
+        let message = new builder.Message(session).text('This is a message with the ISSUE_RESOLUTION tag');
+        facebook.AddMessageTag(message, facebook.MessageTags.ISSUE_RESOLUTION); 
+
+        session.send(message);
+    }
+]);
 ```
 
 ## License
