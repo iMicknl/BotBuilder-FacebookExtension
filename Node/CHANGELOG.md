@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.2.4 - 2017-06-23
+### Changed
+- Add basic support for Message Tags (not functional yet due to BotBuilder limitations)
+- Rewrite documentation and examples to ES5 style
+
 ## 1.2.3 - 2017-06-10
 ### Changed
 - Update dependencies
