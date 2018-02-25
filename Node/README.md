@@ -21,7 +21,7 @@ Install the package through NPM. `npm install botbuilder-facebookextension --sav
 ### User Profile API 
 In order to populate the userdata with the Facebook userdata, you can use a middleware. It will automatically retrieve the data from Facebook and store it before your first reply. By default it will refresh the userdata every day, but you can change it by passing an amount of minutes to the settings object.
 
-A required setting for the middleware is the `accessToken` that you use in the Bot Framework settings. Optional settings are `fields` (array of [fieldnames](https://developers.facebook.com/docs/messenger-platform/user-profile)) and `expireMinutes` (number of minutes to cache data).
+A required setting for the middleware is the `accessToken` that you use in the Bot Framework settings. Optional settings are `fields` (array of [fieldnames](https://developers.facebook.com/docs/messenger-platform/user-profile)), `expireMinutes` (number of minutes to cache data) and `container` (variable name for store retrieved data inside a object inside de userData). By default, all fields are loaded inside `session.userData`. 
 
 **Example**
 ```javascript
@@ -31,13 +31,15 @@ bot.use(
     facebook.RetrieveUserProfile({
         accessToken: 'PAGE_ACCESS_TOKEN',
         expireMinutes: 60, // OPTIONAL
-        fields: ['first_name', 'last_name', 'gender'] // OPTIONAL
+        fields: ['first_name', 'last_name', 'gender'], // OPTIONAL
+        container: 'facebook_data' // OPTIONAL
     })
 );
 
 bot.dialog('/', [
     (session, args, next) => {
-        session.send(`Hi ${session.userData.first_name}!`); // The userData is prepopulated by the middleware
+        let fbData = session.userData['facebook_data'];
+        session.send(`Hi ${fbData.first_name}!`); // The userData is prepopulated by the middleware
     }
 ]);
 ```
