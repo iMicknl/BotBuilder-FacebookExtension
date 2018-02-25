@@ -1,5 +1,5 @@
 import { IMiddlewareMap, Session, IMessage } from 'botbuilder';
-import * as request from 'request-promise';
+import * as request from 'request-promise-native';
 
 //=========================================================
 // User Profile API

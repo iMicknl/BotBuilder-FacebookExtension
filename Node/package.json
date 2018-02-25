@@ -1,7 +1,7 @@
 {
   "name": "botbuilder-facebookextension",
   "version": "1.2.5",
-  "description": "Collection of useful Facebook add-ons for the Bot Builder SDK.",
+  "description": "Collection of useful Facebook add-ons for the Bot Builder v3 SDK.",
   "main": "./lib/botbuilder-facebook.js",
   "types": "./lib/botbuilder-facebook.d.ts",
   "scripts": {
@@ -27,12 +27,12 @@
   },
   "homepage": "https://github.com/iMicknl/BotBuilder-FacebookExtension/tree/master/Node#readme",
   "dependencies": {
-    "botbuilder": "^3.8.3",
-    "request": "^2.81.0",
-    "request-promise": "^4.2.1"
+    "botbuilder": "^3.14.0",
+    "request": "^2.83.0",
+    "request-promise-native": "^1.0.5"
   },
   "devDependencies": {
-    "@types/node": "^7.0.22",
-    "typescript": "^2.3.3"
+    "@types/node": "^9.4.6",
+    "typescript": "^2.7.2"
   }
 }
