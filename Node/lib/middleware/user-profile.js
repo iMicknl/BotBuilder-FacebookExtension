@@ -10,10 +10,15 @@ exports.RetrieveUserProfile = function (options) {
                 next();
                 return;
             }
+            var userDataFields = session.userData;
+            if (options.container && options.container.length > 0) {
+                userDataFields[options.container] = {};
+                userDataFields = userDataFields[options.container];
+            }
             var expireMinutes = (options.expireMinutes !== undefined ? options.expireMinutes : 60 * 24) * 1000 * 60;
             var currentTime = new Date().getTime();
-            var lastUpdated = session.userData.facebook_last_updated;
-            if (session.userData.facebook_last_updated !== undefined && (lastUpdated + expireMinutes) >= currentTime) {
+            var lastUpdated = userDataFields.facebook_last_updated;
+            if (userDataFields.facebook_last_updated !== undefined && (lastUpdated + expireMinutes) >= currentTime) {
                 next();
                 return;
             }
@@ -31,14 +36,14 @@ exports.RetrieveUserProfile = function (options) {
                     if (user[field] === undefined) {
                         continue;
                     }
-                    session.userData[field] = user[field];
+                    userDataFields[field] = user[field];
                 }
-                session.userData.facebook_last_updated = currentTime;
+                userDataFields.facebook_last_updated = currentTime;
                 next();
             })["catch"](function (response) {
                 for (var _i = 0, fields_2 = fields; _i < fields_2.length; _i++) {
                     var field = fields_2[_i];
-                    session.userData[field] = '';
+                    userDataFields[field] = '';
                 }
                 if (response.error !== undefined) {
                     console.error(response.error);

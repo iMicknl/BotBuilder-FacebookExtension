@@ -10,6 +10,7 @@ export interface IFacebookUserProfileOptions {
     accessToken: string;
     fields?: Array<string>;
     expireMinutes?: number;
+    container?: string;
 }
 
 const graphApiUrl = 'https://graph.facebook.com/v2.6';
@@ -25,13 +26,18 @@ export const RetrieveUserProfile = (options: IFacebookUserProfileOptions): IMidd
                 next();
                 return;
             }
-
+            
+            let userDataFields = session.userData;
+            if(options.container && options.container.length > 0){
+                userDataFields[options.container] = {};
+                userDataFields = userDataFields[options.container];
+            }
             const expireMinutes = (options.expireMinutes !== undefined ? options.expireMinutes : 60 * 24) * 1000 * 60;
             const currentTime = new Date().getTime();
-            const lastUpdated = session.userData.facebook_last_updated;
+            const lastUpdated = userDataFields.facebook_last_updated;
 
             // Skip if cached
-            if (session.userData.facebook_last_updated !== undefined && (lastUpdated + expireMinutes) >= currentTime) {
+            if (userDataFields.facebook_last_updated !== undefined && (lastUpdated + expireMinutes) >= currentTime) {
                 next();
                 return;
             }
@@ -55,18 +61,18 @@ export const RetrieveUserProfile = (options: IFacebookUserProfileOptions): IMidd
                             continue;
                         }
 
-                        session.userData[field] = user[field];
+                        userDataFields[field] = user[field];
                     }
 
                     // Add current time
-                    session.userData.facebook_last_updated = currentTime;
+                    userDataFields.facebook_last_updated = currentTime;
 
                     next();
                 })
 
                 .catch((response) => {
                     for (let field of fields) {
-                        session.userData[field] = '';
+                        userDataFields[field] = '';
                     }
 
                     if (response.error !== undefined) {
