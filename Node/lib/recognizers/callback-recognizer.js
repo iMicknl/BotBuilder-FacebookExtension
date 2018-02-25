@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var CallbackRecognizer = (function () {
     function CallbackRecognizer(recognizer, options) {
         if (options === void 0) { options = {}; }

@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.MessageTags = {
     SHIPPING_UPDATE: 'SHIPPING_UPDATE',
     RESERVATION_UPDATE: 'RESERVATION_UPDATE',

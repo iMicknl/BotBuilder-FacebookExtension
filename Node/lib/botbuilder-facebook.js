@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var user_profile_1 = require("./middleware/user-profile");
 exports.RetrieveUserProfile = user_profile_1.RetrieveUserProfile;
 var callback_recognizer_1 = require("./recognizers/callback-recognizer");
