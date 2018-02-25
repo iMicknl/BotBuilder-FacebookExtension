@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.2.5 - 2018-02-25
+### Changed
+- Add option to save retrieved fields in a object inside the session.userData (thanks @skal88)
+
 ## 1.2.4 - 2017-06-23
 ### Changed
 - Add basic support for Message Tags (not functional yet due to BotBuilder limitations)
